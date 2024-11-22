@@ -1,5 +1,9 @@
 package com.todotic.contactlistapi.repository;
 
-public interface ContactRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import com.todotic.contactlistapi.entity.Contact;
+
+public interface ContactRepository extends CrudRepository<Contact, Integer>{
 
 }
