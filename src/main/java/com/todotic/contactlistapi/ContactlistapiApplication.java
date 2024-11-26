@@ -17,7 +17,7 @@ public class ContactlistapiApplication {
 
     public static void main(String[] args) { SpringApplication.run(ContactlistapiApplication.class, args); }
         
-        @Bean
+        /*@Bean
         CommandLineRunner runner(ContactRepository contactRepository){
             return args -> {
                 List<Contact> contacts = Arrays.asList(
@@ -29,5 +29,5 @@ public class ContactlistapiApplication {
                 );
                 contactRepository.saveAll(contacts);
             };    
-        }
+        }*/
     }

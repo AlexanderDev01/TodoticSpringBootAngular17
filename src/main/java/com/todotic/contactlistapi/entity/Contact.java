@@ -1,11 +1,13 @@
 package com.todotic.contactlistapi.entity;
 
+import jakarta.persistence.Column;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -18,6 +20,8 @@ import lombok.Setter;
 
 @RequiredArgsConstructor
 @NoArgsConstructor
+
+@Table(name = "contacts")
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +32,9 @@ public class Contact {
     
     @NonNull
     private String email;
-
+    
+    
     @NonNull
+    @Column(name = "create_at")
     private LocalDateTime createdAt;
 }
