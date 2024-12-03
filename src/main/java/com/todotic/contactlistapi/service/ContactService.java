@@ -6,8 +6,10 @@ package com.todotic.contactlistapi.service;
 
 import com.todotic.contactlistapi.entity.Contact;
 import com.todotic.contactlistapi.repository.ContactRepository;
+import com.todotic.contactlistapi.dto.ContactDTO;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
@@ -24,16 +26,18 @@ public class ContactService {
         return contactRepository.findById(id).orElse(null);
     }
     
-    public Contact create(Contact contact) {
+    public Contact create(ContactDTO contactDTO) {      
+        ModelMapper mapper = new ModelMapper();
+        Contact contact = mapper.map(contactDTO, Contact.class);
         contact.setCreatedAt(LocalDateTime.now());
         return contactRepository.save(contact);
     }
     
-    public Contact update(Integer id, Contact form) {
+    public Contact update(Integer id, ContactDTO contactDTO) {
         Contact contactFromDb = findById(id);
         
-        contactFromDb.setName(form.getName());
-        contactFromDb.setEmail(form.getEmail());
+        ModelMapper mapper = new ModelMapper();
+        mapper.map(contactDTO, contactFromDb);
         
         return contactRepository.save(contactFromDb);
     }
